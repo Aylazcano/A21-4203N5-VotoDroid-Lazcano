@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.a21_4203n5_votodroid_lazcano.databinding.ActivityMainBinding;
 
@@ -30,5 +29,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        //inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
+        return true;
     }
 }

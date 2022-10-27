@@ -16,4 +16,11 @@
         android:backgroundTint="@android:color/darker_gray"
         android:text="AJOUTER"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        />
+
 </LinearLayout>

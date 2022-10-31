@@ -2,9 +2,12 @@ package com.example.a21_4203n5_votodroid_lazcano;
 
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,8 +23,10 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView question;
+        public ImageButton button;
         public MyViewHolder(LinearLayout v) {
             super(v);
+            button = v.findViewById(R.id.resultatImageButton);
             question = v.findViewById(R.id.question);
         }
     }
@@ -49,6 +54,13 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
         // - replace the contents of the view with that element
         Questions questionCourante = list.get(position);
         holder.question.setText(questionCourante.question);// TODO setText sur un integer crash
+
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "coucou " + questionCourante.question, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

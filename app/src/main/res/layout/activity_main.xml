@@ -5,22 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#f00"
     tools:context=".MainActivity">
 
 
     <Button android:id="@+id/buttonAjouter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
         android:textColor="@color/black"
+        android:background="#ff0"
         android:backgroundTint="@android:color/darker_gray"
         android:text="AJOUTER"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:background="#0f0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        />
+        android:layout_marginHorizontal="30dp" />
 
 </LinearLayout>

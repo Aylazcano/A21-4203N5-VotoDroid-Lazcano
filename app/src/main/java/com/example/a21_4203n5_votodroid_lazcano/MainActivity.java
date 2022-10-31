@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.a21_4203n5_votodroid_lazcano.databinding.ActivityMainBinding;
 
@@ -23,11 +24,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //*1* Redondant?
 
+        /*Add in Oncreate() funtion after setContentView()*/
+
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view); //*1* Redondant?
 
+        // initialisation du recycler
         this.initRecycler();
+        this.remplirRecycler();
 
         binding.buttonAjouter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,14 +54,13 @@ public class MainActivity extends AppCompatActivity {
     private void remplirRecycler() {
         for (int i = 0 ; i < 100 ; i++) {
             Questions q = new Questions();
-            p.nom = "Bob " + i;
-            p.age = 20 + (new Random().nextInt(20));
-            adapter.list.add(p);
+            q.question ="Que penses-tu de Disney? " +i;
+            adapter.list.add(q);
         }
         adapter.notifyDataSetChanged();
     }
 
-    private void initRecycler(){
+    private void initRecycler() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
@@ -66,4 +71,5 @@ public class MainActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         adapter = new QuestionsAdapter();
         recyclerView.setAdapter(adapter);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.a21_4203n5_votodroid_lazcano;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,18 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "coucou " + questionCourante.question, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(view.getContext(), "coucou " + questionCourante.question, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), ResultActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
+
+        holder.question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(view.getContext(), "coucou " + questionCourante.question, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), VoteActivity.class);
+                view.getContext().startActivity(intent);
             }
         });
 

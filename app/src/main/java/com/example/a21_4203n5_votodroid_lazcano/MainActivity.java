@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         /*Add in Oncreate() funtion after setContentView()*/
 
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view); //*1* Redondant?
@@ -57,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
             q.question ="Que penses-tu de Disney? " +i;
             adapter.list.add(q);
         }
+
         adapter.notifyDataSetChanged();
+    }
+
+    int pipo() {
+        return 7;
     }
 
     private void initRecycler() {

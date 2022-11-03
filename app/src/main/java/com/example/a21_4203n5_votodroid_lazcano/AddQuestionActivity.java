@@ -13,6 +13,7 @@ public class AddQuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_question);
+        setTitle("VoteDroid");
 
         Button b = findViewById(R.id.button_pose_la_question);
         b.setOnClickListener(new View.OnClickListener() {

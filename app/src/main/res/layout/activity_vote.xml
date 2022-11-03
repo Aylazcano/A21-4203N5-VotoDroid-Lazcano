@@ -12,6 +12,7 @@
         android:id="@+id/selectedQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:textSize="30dp"
         android:text= "Que penses-tu de Disney?"
         />
@@ -26,6 +27,7 @@
         />
 
     <EditText
+        android:id="@+id/voteName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -34,8 +36,10 @@
         />
 
     <Button
+        android:id="@+id/voteButtom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
         android:textColor="@color/black"
         android:backgroundTint="@android:color/darker_gray"
         android:text="VOTE"/>

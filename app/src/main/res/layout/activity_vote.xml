@@ -20,6 +20,7 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:numStars="5"
         android:layout_gravity="center_horizontal"
         />
@@ -32,5 +33,11 @@
         android:hint="Nom du votant"
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="VOTE"/>
 
 </LinearLayout>

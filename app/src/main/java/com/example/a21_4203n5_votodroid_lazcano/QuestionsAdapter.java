@@ -68,7 +68,6 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
         holder.question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(view.getContext(), "coucou " + questionCourante.question, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), VoteActivity.class);
                 view.getContext().startActivity(intent);
             }

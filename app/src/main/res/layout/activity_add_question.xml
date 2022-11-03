@@ -9,11 +9,11 @@
     tools:context=".AddQuestionActivity">
 
     <TextView
-        android:layout_width="wrap_content"
         android:id="@+id/test"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ta question"
-        android:textSize="40dp"/>
+        android:textSize="30dp"/>
 
     <EditText
         android:id="@+id/edit_question"

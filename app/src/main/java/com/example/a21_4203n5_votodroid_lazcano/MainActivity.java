@@ -56,12 +56,7 @@ public class MainActivity extends AppCompatActivity {
             q.question ="Que penses-tu de Disney? " +i;
             adapter.list.add(q);
         }
-
         adapter.notifyDataSetChanged();
-    }
-
-    int pipo() {
-        return 7;
     }
 
     private void initRecycler() {

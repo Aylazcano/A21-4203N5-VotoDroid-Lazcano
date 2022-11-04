@@ -12,12 +12,15 @@ import android.widget.ImageButton;
 
 import com.example.a21_4203n5_votodroid_lazcano.databinding.ActivityMainBinding;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     QuestionsAdapter adapter;
     private ActivityMainBinding binding;
+//    Barchart chart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,40 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //        chart = findViewById(R.id.chart);
+//
+//
+//        /* Settings for the graph - Change me if you want*/
+//        chart.setMaxVisibleValueCount(6);
+//        chart.setPinchZoom(false);
+//        chart.setDrawGridBackground(false);
+//
+//        XAxis xAxis = chart.getXAxis();
+//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+//        xAxis.setDrawGridLines(false);
+//        xAxis.setGranularity(1); // only intervals of 1 day
+//        xAxis.setLabelCount(7);
+//        xAxis.setValueFormatter(new DefaultAxisValueFormatter(0));
+//
+//        YAxis leftAxis = chart.getAxisLeft();
+//        leftAxis.setLabelCount(4, false);
+//        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+//        leftAxis.setSpaceTop(15f);
+//        leftAxis.setGranularity(1);
+//        leftAxis.setAxisMinimum(0f);
+//        leftAxis.setValueFormatter(new DefaultAxisValueFormatter(0));
+//        chart.getDescription().setEnabled(false);
+//        chart.getAxisRight().setEnabled(false);
+//
+//
+//
+//        /* Data and function call to bind the data to the graph */
+//        Map<Integer, Integer> dataGraph = new HashMap<Integer, Integer>() {{
+//            put(3, 2);
+//            put(4, 1);
+//            put(5, 4);
+//        }};
+//        setData(dataGraph);
     }
 
     @Override
@@ -72,4 +109,5 @@ public class MainActivity extends AppCompatActivity {
         adapter = new QuestionsAdapter();
         recyclerView.setAdapter(adapter);
     }
+
 }

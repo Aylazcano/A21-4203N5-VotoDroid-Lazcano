@@ -43,6 +43,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    //En commentaire, cause une erreur:
+    //Failed to resolve: com.github.PhilJay:MPAndroidChart:v3.1.0
+    //<a href="open.dependency.in.project.structure">Show in Project Structure dialog</a>
+    //Affected Modules: <a href="openFile:C:/Users/0370102/Desktop/A21-4203N5-VotoDroid-Lazcano/app/build.gradle">app</a>
+//    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

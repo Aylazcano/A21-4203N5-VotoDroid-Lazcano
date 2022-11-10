@@ -59,11 +59,11 @@
 
     </LinearLayout>
 
-<!--    <com.github.mikephil.charting.charts.BarChart-->
-<!--        android:id="@+id/chart"-->
-<!--        android:layout_width="fill_parent"-->
-<!--        android:layout_height="fill_parent"-->
-<!--        android:background="@android:color/white"-->
-<!--        />-->
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white"
+        />
 
 </LinearLayout>

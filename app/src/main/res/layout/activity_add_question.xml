@@ -31,6 +31,4 @@
         android:textColor="@color/black"
         android:text="POSE LA QUESTION"/>
 
-
-
 </LinearLayout>

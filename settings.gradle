@@ -1,11 +1,6 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
+include ':app'
+rootProject.name = "TP3"
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -14,5 +9,3 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "A21-4203N5-VotoDroid-Lazcano"
-include ':app'

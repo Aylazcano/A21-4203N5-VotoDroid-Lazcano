@@ -44,9 +44,7 @@ public class Service {
     public List<VDQuestion> toutesLesQuestions() {
         //TODO Présentement :   retourne une liste vide
         //TODO À faire :        trier la liste reçue en BD par le nombre de votes et la retourner
-
-
-        return new ArrayList<>();
+        return new ArrayList<>(maBD.monDao().toutesLesQuestions());
     }
 
     

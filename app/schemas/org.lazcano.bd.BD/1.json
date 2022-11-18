@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "554ed29dbcd5550e37539c4c134291e5",
+    "identityHash": "650ca820ac27081c47c9f381605e6369",
     "entities": [
       {
         "tableName": "VDQuestion",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idQuestion` INTEGER PRIMARY KEY AUTOINCREMENT, `texteQuestion` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idQuestion` INTEGER PRIMARY KEY AUTOINCREMENT, `texteQuestion` TEXT, `question` TEXT, `note` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "idQuestion",
@@ -19,6 +19,18 @@
             "columnName": "texteQuestion",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "question",
+            "columnName": "question",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -34,7 +46,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '554ed29dbcd5550e37539c4c134291e5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '650ca820ac27081c47c9f381605e6369')"
     ]
   }
 }

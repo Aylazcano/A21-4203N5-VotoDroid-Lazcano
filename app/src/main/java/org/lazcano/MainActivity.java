@@ -12,13 +12,18 @@ import android.view.Menu;
 import android.view.View;
 
 import org.lazcano.bd.BD;
+import org.lazcano.bd.MonDao;
 import org.lazcano.databinding.ActivityMainBinding;
 import org.lazcano.exceptions.MauvaiseQuestion;
 import org.lazcano.modele.VDQuestion;
 import org.lazcano.service.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
+    //*01-Init BD
     private Service service;
     private BD maBD;
 
@@ -30,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("VoteDroid");
+
+        //*01-Init BD
+        maBD =  Room.databaseBuilder(getApplicationContext(), BD.class, "BDQuestions")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
+        service = new Service(maBD);
 
         /*Add in Oncreate() funtion after setContentView()*/
 
@@ -58,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void remplirRecycler() {
+
+//        for (VDQuestion q: maBD.monDao().toutesLesQuestions()) {
+//            adapter.list.add(q);
+//        }
         for (int i = 0 ; i < 100 ; i++) {
             Questions q = new Questions();
             q.question ="Que penses-tu de Disney? " +i;

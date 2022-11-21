@@ -10,11 +10,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.lazcano.modele.VDQuestion;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyViewHolder> {
-    public List<Questions> list;
+    public List<VDQuestion> list;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -51,8 +53,8 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Questions questionCourante = list.get(position);
-        holder.question.setText(questionCourante.question);// TODO setText sur un integer crash
+        VDQuestion questionCourante = list.get(position);
+        holder.question.setText(questionCourante.texteQuestion);// TODO setText sur un integer crash
 
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override

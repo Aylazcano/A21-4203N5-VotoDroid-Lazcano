@@ -22,7 +22,7 @@ public class AddQuestionActivity extends AppCompatActivity {
     private Service service;
     private BD maBD;
 
-    //*02-Checher la question (Global variable)
+    //*02-Cherche la question (Global variable)
     EditText edit_question;
 
     @Override
@@ -32,7 +32,7 @@ public class AddQuestionActivity extends AppCompatActivity {
         setTitle("VoteDroid");
 
         //*01-Init BD
-        maBD =  Room.databaseBuilder(getApplicationContext(), BD.class, "BDQuestions")
+        maBD =  Room.databaseBuilder(getApplicationContext(), BD.class, "BD")
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build();
@@ -47,12 +47,13 @@ public class AddQuestionActivity extends AppCompatActivity {
                 // TODO ajouter la question dans le service
 
                 try {
-                    VDQuestion q = new VDQuestion(); // aller cherche le texte depuis l'interface
+                    VDQuestion q = new VDQuestion(); // aller chercher le texte depuis l'interface
 
                     //*02-Checher la question (Global variable)
                     edit_question = (EditText) findViewById(R.id.edit_question);
                     q.texteQuestion = (edit_question).getText().toString();
                     service.creerQuestion(q);
+
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 } catch (MauvaiseQuestion e) {

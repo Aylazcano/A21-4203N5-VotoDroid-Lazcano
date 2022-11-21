@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("VoteDroid");
 
         //*01-Init BD
-        maBD =  Room.databaseBuilder(getApplicationContext(), BD.class, "BDQuestions")
+        maBD =  Room.databaseBuilder(getApplicationContext(), BD.class, "BD")
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build();
@@ -71,14 +71,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void remplirRecycler() {
 
-//        for (VDQuestion q: maBD.monDao().toutesLesQuestions()) {
-//            adapter.list.add(q);
-//        }
-        for (int i = 0 ; i < 100 ; i++) {
-            Questions q = new Questions();
-            q.question ="Que penses-tu de Disney? " +i;
+        for (VDQuestion q: maBD.monDao().toutesLesQuestions()) {
             adapter.list.add(q);
         }
+
         adapter.notifyDataSetChanged();
     }
 

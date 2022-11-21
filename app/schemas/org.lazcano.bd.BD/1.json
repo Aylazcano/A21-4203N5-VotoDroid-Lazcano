@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "650ca820ac27081c47c9f381605e6369",
+    "identityHash": "c66b4c5aeabb515517a3b7fd980cffaa",
     "entities": [
       {
         "tableName": "VDQuestion",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idQuestion` INTEGER PRIMARY KEY AUTOINCREMENT, `texteQuestion` TEXT, `question` TEXT, `note` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idQuestion` INTEGER PRIMARY KEY AUTOINCREMENT, `texteQuestion` TEXT)",
         "fields": [
           {
             "fieldPath": "idQuestion",
@@ -19,18 +19,6 @@
             "columnName": "texteQuestion",
             "affinity": "TEXT",
             "notNull": false
-          },
-          {
-            "fieldPath": "question",
-            "columnName": "question",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "note",
-            "columnName": "note",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -41,12 +29,62 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "VDVote",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idVote` INTEGER PRIMARY KEY AUTOINCREMENT, `idQuestion` INTEGER, `nom` TEXT, `valeurVote` INTEGER NOT NULL, FOREIGN KEY(`idQuestion`) REFERENCES `VDQuestion`(`idQuestion`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "idVote",
+            "columnName": "idVote",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idQuestion",
+            "columnName": "idQuestion",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nom",
+            "columnName": "nom",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "valeurVote",
+            "columnName": "valeurVote",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idVote"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "VDQuestion",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idQuestion"
+            ],
+            "referencedColumns": [
+              "idQuestion"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '650ca820ac27081c47c9f381605e6369')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c66b4c5aeabb515517a3b7fd980cffaa')"
     ]
   }
 }

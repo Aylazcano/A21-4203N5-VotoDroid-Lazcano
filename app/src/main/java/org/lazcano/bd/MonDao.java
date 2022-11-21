@@ -5,16 +5,28 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import org.lazcano.modele.VDQuestion;
+import org.lazcano.modele.VDVote;
 
 import java.util.List;
 
 @Dao
 public interface MonDao {
     @Insert
-    Long insertQuestion(VDQuestion v);
+    Long insertQuestion(VDQuestion q);
+
 
     //TODO Compléter les autres actions
 
     @Query("SELECT * FROM VDQuestion")
     List<VDQuestion> toutesLesQuestions();
+
+    @Insert
+    long insertVote(VDVote v);
+//    // *3a Méthode Java (voir Service.creerQuestion)
+//    @Query("SELECT * FROM VDVote")
+//    public List<VDVote> toutesLesVotes();
+
+    // *3b Méthode SQL (BD, MonDao, Service)
+    @Query("SELECT * FROM VDVote WHERE nom = :nom AND idQuestion = :qId")
+    public List<VDVote> dejaVote (String nom, Long qId);
 }

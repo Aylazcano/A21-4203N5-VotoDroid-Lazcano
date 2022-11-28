@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private void remplirRecycler() {
 
         for (VDQuestion q: maBD.monDao().toutesLesQuestions()) {
+
             adapter.list.add(q);
         }
 

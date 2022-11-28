@@ -7,6 +7,8 @@ import org.lazcano.modele.VDQuestion;
 import org.lazcano.modele.VDVote;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +28,7 @@ public class Service {
         if (vdQuestion.idQuestion != null) throw new MauvaiseQuestion("Id non nul. La BD doit le gérer");
 
         // Doublon du texte de la question
-        for (VDQuestion q : toutesLesQuestions()){
+        for (VDQuestion q : toutesLesQuestionsOrdreDescNbVotes()){
             if (q.texteQuestion.toUpperCase().equals(vdQuestion.texteQuestion.toUpperCase())){
                     throw new MauvaiseQuestion("Question existante");
             }
@@ -59,17 +61,36 @@ public class Service {
     }
 
     
-    public List<VDQuestion> toutesLesQuestions() {
+    public List<VDQuestion> toutesLesQuestionsOrdreDescNbVotes() {
         //TODO Présentement :   retourne une liste vide
         //TODO À faire :        trier la liste reçue en BD par le nombre de votes et la retourner
         List<VDQuestion> liste = new ArrayList<>(maBD.monDao().toutesLesQuestions());
         // TODO trier
+        Collections.sort(liste, new Comparator<VDQuestion>() {
+            @Override
+            public int compare(VDQuestion q1, VDQuestion q2) {
+                // Si q1 doit etre avant q2 (return -1), apres (return 1) ou pareil (return 0)
+                int nbVotes1 = maBD.monDao().nbVotesPour(q1.idQuestion);
+                int nbVotes2 = maBD.monDao().nbVotesPour(q2.idQuestion);
 
+                if (nbVotes1 > nbVotes2)
+                    return -1;
 
+                if (nbVotes1 < nbVotes2)
+                    return 1;
 
+                return 0;
+            }
+        });
 
         return liste;
     }
+
+//    private int nbVotesPour(VDQuestion q) {
+//        return maBD.monDao().lesVotesPour(q.idQuestion).size();
+//        return maBD.monDao().nbVotesPour(q.idQuestion);
+//    }
+
 //    // *3a Méthode Java (voir Service.creerQuestion)
 //    public List<VDVote> toutesLesVotes (String nom, Long qId){
 //        List<VDVote> liste = new ArrayList<>(maBD.monDao().toutesLesVotes());

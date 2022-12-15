@@ -52,10 +52,12 @@ public class AddQuestionActivity extends AppCompatActivity {
                     //*02-Checher la question (Global variable)
                     edit_question = (EditText) findViewById(R.id.edit_question);
                     q.texteQuestion = (edit_question).getText().toString();
+
                     service.creerQuestion(q);
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+
                 } catch (MauvaiseQuestion e) {
                     Log.e("CREERQUESTION", "Impossible de créer la question : " + e.getMessage());
                     Toast.makeText(AddQuestionActivity.this,"Impossible de créer la question : " + e.getMessage(),Toast.LENGTH_LONG).show();

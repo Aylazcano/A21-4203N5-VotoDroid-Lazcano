@@ -1,9 +1,11 @@
 package org.lazcano;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -14,7 +16,11 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
-import org.lazcano.R;
+import org.lazcano.bd.BD;
+import org.lazcano.databinding.ActivityResultBinding;
+import org.lazcano.modele.VDQuestion;
+import org.lazcano.modele.VDVote;
+import org.lazcano.service.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,12 +30,69 @@ import java.util.Map;
 public class ResultActivity extends AppCompatActivity {
     BarChart chart;
 
+    //*01-Init BD
+    private Service service;
+    private BD maBD;
+
+    private ActivityResultBinding binding;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         setTitle("Résultats");
+
+        //*01-Init BD
+        maBD =  Room.databaseBuilder(getApplicationContext(), BD.class, "BD")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
+        service = new Service(maBD);
+
+        binding = ActivityResultBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        String question = getIntent().getStringExtra("questionCourante");
+        binding.selectedQuestion.setText(question);
+
+        Long idQuestion = getIntent().getLongExtra("idQuestion",0);
+
+        int etoile0 = 0;
+        int etoile1 = 0;
+        int etoile2 = 0;
+        int etoile3 = 0;
+        int etoile4 = 0;
+        int etoile5 = 0;
+        int etoilesTotal = 0;
+        int votesTotal = 0;
+        for (VDVote v: maBD.monDao().lesVotesPour(idQuestion)) {
+            etoilesTotal += v.valeurVote;
+            votesTotal++;
+
+            if(v.valeurVote == 0)
+                etoile0++;
+            if(v.valeurVote == 1)
+                etoile1++;
+            if(v.valeurVote == 2)
+                etoile2++;
+            if(v.valeurVote == 3)
+                etoile3++;
+            if(v.valeurVote == 4)
+                etoile4++;
+            if(v.valeurVote == 5)
+                etoile5++;
+
+        }
+        if(votesTotal > 0) {
+            double moyenne = (double)etoilesTotal/(double)votesTotal;
+
+            //binding.moyenne.setText(String.valueOf(moyenne));
+            binding.moyenne.setText(String.format("%.2f", moyenne));
+        }
+        else
+            binding.moyenne.setText("0");
 
         chart = findViewById(R.id.chart);
 
@@ -59,10 +122,19 @@ public class ResultActivity extends AppCompatActivity {
 
 
         /* Data and function call to bind the data to the graph */
+        int finalEtoile0 = etoile0;
+        int finalEtoile1 = etoile1;
+        int finalEtoile2 = etoile2;
+        int finalEtoile3 = etoile3;
+        int finalEtoile4 = etoile4;
+        int finalEtoile5 = etoile5;
         Map<Integer, Integer> dataGraph = new HashMap<Integer, Integer>() {{
-            put(3, 2);
-            put(4, 1);
-            put(5, 4);
+            put(0, finalEtoile0);
+            put(1, finalEtoile1);
+            put(2, finalEtoile2);
+            put(3, finalEtoile3);
+            put(4, finalEtoile4);
+            put(5, finalEtoile5);
         }};
         setData(dataGraph);
     }

@@ -9,11 +9,13 @@
     tools:context=".ResultActivity">
 
     <TextView
+        android:id="@+id/selectedQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:layout_marginBottom="10dp"
-        android:text="C'est comment la programmation Android?"/>
+        android:text= "questionCourante"
+        />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
@@ -29,35 +31,15 @@
             android:text="Moyenne :"/>
 
         <TextView
+            android:id="@+id/moyenne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:gravity="center_horizontal"
-            android:text="4.29"/>
+            android:text="moyenne"/>
 
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Écart type :"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:gravity="center_horizontal"
-            android:text="0.88"/>
-
-    </LinearLayout>
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart"

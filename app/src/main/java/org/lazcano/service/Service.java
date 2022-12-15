@@ -39,7 +39,7 @@ public class Service {
     }
 
     
-    public void creerVote(VDVote vdVote) throws MauvaisVote {
+    public void creerVote(VDVote vdVote, long qId) throws MauvaisVote {
         // Validation
         if (vdVote.nom == null || vdVote.nom.length() == 0) throw new MauvaisVote("Nom vide");
         if (vdVote.nom.trim().length() > 0 && vdVote.nom.trim().length() < 4) throw new MauvaisVote("Nom trop courte");
@@ -99,6 +99,7 @@ public class Service {
 
     
     public float moyenneVotes(VDQuestion question) {
+
         return 0;
     }
 

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         binding.buttonAjouter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(getApplicationContext(), AddQuestionActivity.class);
+                Intent intent =  new Intent(MainActivity.this, AddQuestionActivity.class); //MainActivity.this == getApplicationContext() dans ce cas.
                 startActivity(intent);
             }
         });
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void remplirRecycler() {
 
-        for (VDQuestion q: maBD.monDao().toutesLesQuestions()) {
+        for (VDQuestion q: service.toutesLesQuestionsOrdreDescNbVotes()) {
 
             adapter.list.add(q);
         }

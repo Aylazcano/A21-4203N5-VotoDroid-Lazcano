@@ -56,19 +56,22 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.MyVi
         VDQuestion questionCourante = list.get(position);
         holder.question.setText(questionCourante.texteQuestion);// TODO setText sur un integer crash
 
+        holder.question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), VoteActivity.class);
+                intent.putExtra("questionCourante",questionCourante.texteQuestion);
+                view.getContext().startActivity(intent);
+            }
+        });
+
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(view.getContext(), "coucou " + questionCourante.question, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), ResultActivity.class);
-                view.getContext().startActivity(intent);
-            }
-        });
-
-        holder.question.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), VoteActivity.class);
+                intent.putExtra("questionCourante",questionCourante.texteQuestion);
+                intent.putExtra("idQuestion", questionCourante.idQuestion);
                 view.getContext().startActivity(intent);
             }
         });

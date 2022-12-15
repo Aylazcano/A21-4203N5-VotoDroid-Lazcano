@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TP3</string>
+
+    <string name="main_selectedQuestion">questionCoutrante</string>
+
+    <string name="main_btnResultatQuestion">questionCoutrante</string>
+    <string name="main_btnResultatQuestionMoyenne">moyenne</string>
+
 </resources>

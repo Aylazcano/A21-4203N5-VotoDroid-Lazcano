@@ -27,8 +27,8 @@ public interface MonDao {
 //    List<VDVote> tousLesVotes();
 
 
-//    @Query("SELECT * FROM VDVote WHERE idQuestion = :qid")
-//    List<VDVote> lesVotesPour(Long qid);
+    @Query("SELECT * FROM VDVote WHERE idQuestion = :qId")
+    List<VDVote> lesVotesPour(Long qId);
 
     @Query("SELECT count(*) FROM VDVote WHERE idQuestion = :qId")
     int nbVotesPour(Long qId);
@@ -40,5 +40,10 @@ public interface MonDao {
     // *3b Méthode SQL (BD, MonDao, Service)
     @Query("SELECT * FROM VDVote WHERE nom = :nom AND idQuestion = :qId")
     public List<VDVote> dejaVote (String nom, Long qId);
+
+    //Chercher qId
+    @Query("SELECT idQuestion FROM VDQuestion WHERE texteQuestion = :question ")
+    public long qId(String question);
+
 
 }

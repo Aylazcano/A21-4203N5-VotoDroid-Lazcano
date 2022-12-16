@@ -6,6 +6,7 @@ import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -295,9 +296,9 @@ public class TestsService {
     }
 
 
-//    @After
-//    public void closeDb() {
-//        bd.close();
-//    }
+    @After
+    public void closeDb() {
+        bd.close();
+    }
 
 }

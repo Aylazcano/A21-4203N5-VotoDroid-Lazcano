@@ -34,8 +34,8 @@ public interface MonDao {
     int nbVotesPour(Long qId);
 
 //    // *3a Méthode Java (voir Service.creerQuestion)
-//    @Query("SELECT * FROM VDVote")
-//    public List<VDVote> toutesLesVotes();
+    @Query("SELECT * FROM VDVote")
+    public List<VDVote> toutesLesVotes();
 
     // *3b Méthode SQL (BD, MonDao, Service)
     @Query("SELECT * FROM VDVote WHERE nom = :nom AND idQuestion = :qId")

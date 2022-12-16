@@ -17,6 +17,7 @@ import org.lazcano.modele.VDQuestion;
 import org.lazcano.modele.VDVote;
 import org.lazcano.service.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
@@ -100,8 +101,77 @@ public class TestsService {
         Assert.fail("Exception MauvaiseQuestion non lancée");
     }
 
+
+
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteKONomVide() throws MauvaisVote {
+        VDVote v = new VDVote();
+        v.idQuestion = Long.valueOf(1);
+        v.nom = "";
+        service.creerVote(v, v.idQuestion);
+
+        Assert.fail("Exception MauvaisVote non lancée");
+    }
+
+
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteKONomCourt() throws MauvaisVote {
+        VDVote va = new VDVote();
+        va.idQuestion = 1l;
+        va.nom = "a";
+
+        VDVote vab = new VDVote();
+        vab.idQuestion = 1l;
+        vab.nom = "ab";
+
+        VDVote vabc = new VDVote();
+        vabc.idQuestion = 1l;
+        vabc.nom = "abc";
+
+        service.creerVote(va, va.idQuestion);
+        Assert.fail("Exception MauvaisVote non lancée");
+
+        service.creerVote(vab, vab.idQuestion);
+        Assert.fail("Exception MauvaisVote non lancée");
+
+        service.creerVote(vabc, vabc.idQuestion);
+        Assert.fail("Exception MauvaisVote non lancée");
+    }
+
+
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteKODejaVote() throws MauvaisVote {
+        VDVote v = new VDVote();
+        v.idQuestion = 1l;
+        v.nom = "Alexis";
+        v.valeurVote = 5;
+
+        VDVote v2 = new VDVote();
+        v2.idQuestion = 1l;
+        v2.nom = "Alexis";
+        v2.valeurVote = 0;
+
+        service.creerVote(v, v.idQuestion);
+        service.creerVote(v2, v2.idQuestion);
+
+        Assert.fail("Exception MauvaisVote non lancée");
+    }
+
+
     @Test
-    public void toutesLesQuestionsTri() throws MauvaiseQuestion, MauvaisVote {
+    public void ajoutVoteOK() throws MauvaisVote {
+        VDVote v = new VDVote();
+        v.idQuestion = 1l;
+        v.nom = "David";
+        v.valeurVote = 5;
+        service.creerVote(v, v.idQuestion);
+
+        Assert.assertNotNull(v.idVote);
+    }
+
+
+    @Test
+    public void toutesLesQuestionsTriKO() throws MauvaiseQuestion, MauvaisVote {
 
         //Question 1 = 1 vote
         VDQuestion q1 = new VDQuestion();
@@ -111,7 +181,7 @@ public class TestsService {
         VDVote v1 = new VDVote();
         v1.idQuestion = q1.idQuestion;
         v1.nom = "aaaa";
-        service.creerVote(v1);
+        service.creerVote(v1, q1.idQuestion);
 
 
         //Question 2 = 2 votes
@@ -122,12 +192,12 @@ public class TestsService {
         VDVote v2 = new VDVote();
         v2.idQuestion = q2.idQuestion;
         v2.nom = "aaaa";
-        service.creerVote(v2);
+        service.creerVote(v2, q2.idQuestion);
 
         VDVote v3 = new VDVote();
         v3.idQuestion = q2.idQuestion;
         v3.nom = "bbbb";
-        service.creerVote(v3);
+        service.creerVote(v3, q2.idQuestion);
 
 
         //Question 3 = 3 votes
@@ -138,17 +208,17 @@ public class TestsService {
         VDVote v4 = new VDVote();
         v4.idQuestion = q3.idQuestion;
         v4.nom = "aaaa";
-        service.creerVote(v4);
+        service.creerVote(v4, q3.idQuestion);
 
         VDVote v5 = new VDVote();
         v5.idQuestion = q3.idQuestion;
         v5.nom = "bbbb";
-        service.creerVote(v5);
+        service.creerVote(v5, q3.idQuestion);
 
         VDVote v6 = new VDVote();
         v6.idQuestion = q3.idQuestion;
         v6.nom = "cccc";
-        service.creerVote(v6);
+        service.creerVote(v6, q3.idQuestion);
 
         //Test
         List<VDQuestion> triees = service.toutesLesQuestionsOrdreDescNbVotes();
@@ -157,6 +227,63 @@ public class TestsService {
         Assert.assertEquals("Question 1 = 1 vote", triees.get(2).texteQuestion);
     }
 
+    @Test
+    public void supprimerToutesQuestionsOK() throws MauvaiseQuestion, MauvaisVote {
+
+        VDQuestion question = new VDQuestion();
+        VDQuestion question2 = new VDQuestion();
+
+        question.texteQuestion = "Aimes-tu les hommes?";
+        question2.texteQuestion = "Aimes-tu les femmes?";
+
+        service.creerQuestion(question);
+        service.creerQuestion(question2);
+
+        service.supprimerToutesQuestions();
+
+        //Test
+        List<VDQuestion> triees = service.toutesLesQuestionsOrdreDescNbVotes();
+        Assert.assertTrue(triees.isEmpty());
+    }
+
+//    @Test
+//    public void supprimerTousVotesOK() throws MauvaiseQuestion, MauvaisVote {
+//
+//        //Question 1 = 1 vote
+//        VDQuestion q1 = new VDQuestion();
+//        q1.texteQuestion = "Question 1 = 1 vote";
+//        service.creerQuestion(q1);
+//
+//
+//        VDVote v1 = new VDVote();
+//        v1.idQuestion = q1.idQuestion;
+//        v1.nom = "aaaa";
+//        service.creerVote(v1, q1.idQuestion);
+//
+//
+//        //Question 2 = 2 votes
+//        VDQuestion q2 = new VDQuestion();
+//        q2.texteQuestion = "Question 2 = 2 votes";
+//        service.creerQuestion(q2);
+//
+//        VDVote v2 = new VDVote();
+//        v2.idQuestion = q2.idQuestion;
+//        v2.nom = "aaaa";
+//        service.creerVote(v2, q2.idQuestion);
+//
+//        VDVote v3 = new VDVote();
+//        v3.idQuestion = q2.idQuestion;
+//        v3.nom = "bbbb";
+//        service.creerVote(v3, q2.idQuestion);
+//
+//
+//        List<VDVote> listeVote = bd.monDao().toutesLesVotes();
+//
+//        service.supprimerTousVotes();
+//
+//        //Test
+//        Assert.assertTrue(listeVote.isEmpty());
+//    }
 
     /*
     @After

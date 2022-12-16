@@ -86,6 +86,7 @@ public class Service {
         return liste;
     }
 
+
 //    private int nbVotesPour(VDQuestion q) {
 //        return maBD.monDao().lesVotesPour(q.idQuestion).size();
 //        return maBD.monDao().nbVotesPour(q.idQuestion);
@@ -109,9 +110,9 @@ public class Service {
 //    }
 
     
-    public Map<Integer, Integer> distributionVotes(VDQuestion question) {
-        return null;
-    }
+//    public Map<Integer, Integer> distributionVotes(VDQuestion question) {
+//        return null;
+//    }
 	
 	public void supprimerToutesQuestions(){
         maBD.monDao().suprimeToutesQuestions();

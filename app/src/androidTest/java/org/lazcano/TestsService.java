@@ -140,14 +140,19 @@ public class TestsService {
 
 
     @Test(expected = MauvaisVote.class)
-    public void ajoutVoteKODejaVote() throws MauvaisVote {
+    public void ajoutVoteKODejaVote() throws MauvaisVote, MauvaiseQuestion {
         VDVote v = new VDVote();
-        v.idQuestion = 1l;
+
+        VDQuestion question = new VDQuestion();
+        question.texteQuestion = "Aimes-tu les brownies au chocolat?";
+        service.creerQuestion(question);
+
+        v.idQuestion = question.idQuestion;
         v.nom = "Alexis";
         v.valeurVote = 5;
 
         VDVote v2 = new VDVote();
-        v2.idQuestion = 1l;
+        v2.idQuestion = question.idQuestion;
         v2.nom = "Alexis";
         v2.valeurVote = 0;
 
@@ -159,9 +164,14 @@ public class TestsService {
 
 
     @Test
-    public void ajoutVoteOK() throws MauvaisVote {
+    public void ajoutVoteOK() throws MauvaisVote, MauvaiseQuestion {
         VDVote v = new VDVote();
-        v.idQuestion = 1l;
+
+        VDQuestion question = new VDQuestion();
+        question.texteQuestion = "Aimes-tu les brownies au chocolat?";
+        service.creerQuestion(question);
+
+        v.idQuestion = question.idQuestion;
         v.nom = "David";
         v.valeurVote = 5;
         service.creerVote(v, v.idQuestion);
@@ -246,49 +256,48 @@ public class TestsService {
         Assert.assertTrue(triees.isEmpty());
     }
 
-//    @Test
-//    public void supprimerTousVotesOK() throws MauvaiseQuestion, MauvaisVote {
-//
-//        //Question 1 = 1 vote
-//        VDQuestion q1 = new VDQuestion();
-//        q1.texteQuestion = "Question 1 = 1 vote";
-//        service.creerQuestion(q1);
-//
-//
-//        VDVote v1 = new VDVote();
-//        v1.idQuestion = q1.idQuestion;
-//        v1.nom = "aaaa";
-//        service.creerVote(v1, q1.idQuestion);
-//
-//
-//        //Question 2 = 2 votes
-//        VDQuestion q2 = new VDQuestion();
-//        q2.texteQuestion = "Question 2 = 2 votes";
-//        service.creerQuestion(q2);
-//
-//        VDVote v2 = new VDVote();
-//        v2.idQuestion = q2.idQuestion;
-//        v2.nom = "aaaa";
-//        service.creerVote(v2, q2.idQuestion);
-//
-//        VDVote v3 = new VDVote();
-//        v3.idQuestion = q2.idQuestion;
-//        v3.nom = "bbbb";
-//        service.creerVote(v3, q2.idQuestion);
-//
-//
-//        List<VDVote> listeVote = bd.monDao().toutesLesVotes();
-//
-//        service.supprimerTousVotes();
-//
-//        //Test
-//        Assert.assertTrue(listeVote.isEmpty());
+    @Test
+    public void supprimerTousVotesOK() throws MauvaiseQuestion, MauvaisVote {
+
+        //Question 1 = 1 vote
+        VDQuestion q1 = new VDQuestion();
+        q1.texteQuestion = "Question 1 = 1 vote";
+        service.creerQuestion(q1);
+
+
+        VDVote v1 = new VDVote();
+        v1.idQuestion = q1.idQuestion;
+        v1.nom = "aaaa";
+        service.creerVote(v1, q1.idQuestion);
+
+
+        //Question 2 = 2 votes
+        VDQuestion q2 = new VDQuestion();
+        q2.texteQuestion = "Question 2 = 2 votes";
+        service.creerQuestion(q2);
+
+        VDVote v2 = new VDVote();
+        v2.idQuestion = q2.idQuestion;
+        v2.nom = "aaaa";
+        service.creerVote(v2, q2.idQuestion);
+
+        VDVote v3 = new VDVote();
+        v3.idQuestion = q2.idQuestion;
+        v3.nom = "bbbb";
+        service.creerVote(v3, q2.idQuestion);
+
+
+        service.supprimerTousVotes();
+
+        //Test
+        List<VDVote> listeVote = bd.monDao().toutesLesVotes();
+        Assert.assertTrue(listeVote.isEmpty());
+    }
+
+
+//    @After
+//    public void closeDb() {
+//        bd.close();
 //    }
 
-    /*
-    @After
-    public void closeDb() {
-        bd.close();
-    }
-    */
 }

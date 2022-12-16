@@ -21,7 +21,7 @@ public interface MonDao {
 
 
     @Insert
-    long insertVote(VDVote v);
+    Long insertVote(VDVote v);
 
 //    @Query("SELECT * FROM VDVote")
 //    List<VDVote> tousLesVotes();

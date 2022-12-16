@@ -98,18 +98,23 @@ public class Service {
 //    }
 
     
-    public float moyenneVotes(VDQuestion question) {
-
-        return 0;
-    }
+//    public float moyenneVotes(VDQuestion question) {
+//
+//        int etoilesTotal = 0;
+//        for (VDVote v: maBD.monDao().lesVotesPour(question.idQuestion)) {
+//             etoilesTotal += v.valeurVote;
+//        }
+//
+//        return etoilesTotal/maBD.monDao().nbVotesPour(question.idQuestion);
+//    }
 
     
     public Map<Integer, Integer> distributionVotes(VDQuestion question) {
         return null;
     }
 	
-	public void supprimerTousQuestions(){
-        maBD.monDao().suprimeTousQuestions();
+	public void supprimerToutesQuestions(){
+        maBD.monDao().suprimeToutesQuestions();
 	}
 	
 	public void supprimerTousVotes(){

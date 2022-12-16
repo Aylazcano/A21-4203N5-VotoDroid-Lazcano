@@ -70,11 +70,22 @@ public class MainActivity extends AppCompatActivity {
 
         switch (menuItem.getItemId()){
             case R.id.action_suprimer_toutes_questions:
-                service.supprimerTousQuestions();
+                service.supprimerToutesQuestions();
                 Toast.makeText(MainActivity.this,"Liste de questions supprimée!",Toast.LENGTH_SHORT).show();
                 adapter.list.clear();
                 adapter.notifyDataSetChanged();
                 return true;
+
+            case R.id.action_supprimer_tous_votes:
+                service.supprimerTousVotes();
+                Toast.makeText(MainActivity.this,"Liste de votes supprimée!",Toast.LENGTH_SHORT).show();
+                this.initRecycler();
+                this.remplirRecycler();
+                adapter.notifyDataSetChanged();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(menuItem);
         }
 
     }

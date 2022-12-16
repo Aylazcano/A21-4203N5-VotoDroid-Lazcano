@@ -47,7 +47,7 @@ public interface MonDao {
 
     //Supprimer question
     @Query("DELETE FROM VDQuestion")
-    void suprimeTousQuestions();
+    void suprimeToutesQuestions();
 
     //Supprimer vote
     @Query("DELETE FROM vdvote")

@@ -45,5 +45,12 @@ public interface MonDao {
     @Query("SELECT idQuestion FROM VDQuestion WHERE texteQuestion = :question ")
     public long qId(String question);
 
+    //Supprimer question
+    @Query("DELETE FROM VDQuestion")
+    void suprimeTousQuestions();
+
+    //Supprimer vote
+    @Query("DELETE FROM vdvote")
+    void suprimeTousVotes();
 
 }

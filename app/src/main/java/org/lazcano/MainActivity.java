@@ -7,19 +7,15 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.lazcano.bd.BD;
-import org.lazcano.bd.MonDao;
 import org.lazcano.databinding.ActivityMainBinding;
-import org.lazcano.exceptions.MauvaiseQuestion;
 import org.lazcano.modele.VDQuestion;
 import org.lazcano.service.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -67,6 +63,20 @@ public class MainActivity extends AppCompatActivity {
         //inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_activity_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem){
+
+        switch (menuItem.getItemId()){
+            case R.id.action_suprimer_toutes_questions:
+                service.supprimerTousQuestions();
+                Toast.makeText(MainActivity.this,"Liste de questions supprimée!",Toast.LENGTH_SHORT).show();
+                adapter.list.clear();
+                adapter.notifyDataSetChanged();
+                return true;
+        }
+
     }
 
     private void remplirRecycler() {

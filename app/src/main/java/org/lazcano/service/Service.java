@@ -108,9 +108,11 @@ public class Service {
         return null;
     }
 	
-	public void supprimerQuestions(){
+	public void supprimerTousQuestions(){
+        maBD.monDao().suprimeTousQuestions();
 	}
 	
-	public void supprimerVotes(){
+	public void supprimerTousVotes(){
+        maBD.monDao().suprimeTousVotes();
 	}
 }
